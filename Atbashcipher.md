@@ -1,26 +1,32 @@
-import string
+# Atbash Cipher by Irfan, Amjid Faraz,And Balach
 
-def atbash_encrypt(ManiMessage):
-    lowercase = string.ascii_lowercase
-    uppercase = string.ascii_uppercase
-    result = ""
+def reverse_letter(char):
+    if char.isalpha():
+        if char.islower():
+            return chr(ord('z') - (ord(char) - ord('a')))
+        else:
+            return chr(ord('Z') - (ord(char) - ord('A')))
+    else:
+        return char
 
-    for char in ManiMessage:
-        if char.islower():  
-            result += lowercase[25 - lowercase.index(char)]
-        elif char.isupper():  
-            result += uppercase[25 - uppercase.index(char)]
-        else:  
-            result += char
-    return result
+def atbash_process(ManiGap):
+    converted = ""
+    for ch in ManiGap:
+        converted += reverse_letter(ch)
+    return converted
 
-def atbash_decrypt(ManiMessage):
-    return atbash_encrypt(ManiMessage)
+def atbash_encrypt(ManiGap):
+    return atbash_process(ManiGap)
 
-ManiMessage = "Amjid Faraz , Irfan Ali Balach And Hussain are Friends And Group Members"
+def atbash_decrypt(ManiGap):
+    return atbash_process(ManiGap)
 
-encrypted = atbash_encrypt(ManiMessage)
-print("Encrypted :", encrypted)
 
-decrypted = atbash_decrypt(encrypted)
-print("Decrypted :", decrypted)
+Plaintext = input (" Wati Plaintext Aha Bilik Ida ")
+print("Plaintext :", Plaintext)
+
+Cheerdatagain_Pagham = atbash_encrypt(Plaintext)
+print("\nCheerdatagain_Pagham   :", Cheerdatagain_Pagham)
+
+Ne_Zanag_Boo = atbash_decrypt(Cheerdatagain_Pagham)
+print("\nNe_Zanag_Boo:", Ne_Zanag_Boo)
